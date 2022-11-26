@@ -18,12 +18,12 @@ router.post('/post', [
 
 router.get('/posts/:postId', isAuth, feedController.getPost)
 
-// router.put('/posts/:postId', [
-//     //check validation
-//     body('title').trim().isLength({min: 5}),
-//     body('content').trim().isLength({min: 5})
-// ], isAuth, feedController.updatePost)
+router.put('/posts/:postId', [
+    //check validation
+    body('title').trim().isLength({min: 5}),
+    body('content').trim().isLength({min: 5})
+], isAuth, feedController.updatePost)
 
-// router.delete('/posts/:postId', isAuth, feedController.deletePost)
+router.delete('/posts/:postId', isAuth, feedController.deletePost)
 
 module.exports = router

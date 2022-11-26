@@ -1,0 +1,34 @@
+.navbar {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    // border: solid;
+    width: 100%;
+    padding: 10px 40px;
+    background-color: #3b0062;
+
+    .mess {
+        border: solid white thin;
+        a {
+            font-weight: 600;
+        }
+    }
+}
+
+.nav {
+
+    ul {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        li {
+            font-size: 18px;
+            
+        }
+    }
+
+}
