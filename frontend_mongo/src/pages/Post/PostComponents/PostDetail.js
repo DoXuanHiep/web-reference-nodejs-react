@@ -1,9 +1,10 @@
 import classes from "./PostDetail.module.scss"
+import config from "../../../config"
 
 const PostDetail = (props) => {
     const post = props.post
 
-    const iamgeUrl = `http://localhost:8080/${post.imageUrl}`
+    const iamgeUrl = `${config.api.url}/${post.imageUrl}`
     console.log(iamgeUrl)
 
     console.log(post)
