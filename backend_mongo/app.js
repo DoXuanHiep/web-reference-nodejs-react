@@ -57,6 +57,9 @@ app.use((req, res, next) => {
 // use routes
 app.use('/feed', feedRouters)
 app.use('/auth', authRouters)
+app.use('/', (req, res, next) => {
+    res.status(200).json({status: "oke"})
+})
 
 // catch err
 app.use((error, req, res, next) => {

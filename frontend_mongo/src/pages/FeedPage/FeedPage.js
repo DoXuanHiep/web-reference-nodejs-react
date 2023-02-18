@@ -46,12 +46,37 @@ const FeedPage = () => {
 
     useEffect(() => {
         getPostsAPI()
-        const socket = io(`${config.api.url}`, { transports : ['websocket'] })
-        socket.on('posts', data => {
-            if (data.action === 'create') {
-                console.log(data.post)
-            }
-        })
+        const socket = io(`${config.api.url}`, { transports: ['websocket'] });
+        socket.on('posts', (data) => {
+          if (data.action === 'create') {
+            console.log(data.post);
+            console.log(data.creator);
+            const post_socket = {
+              _id: data.post._id,
+              title: data.post.title,
+              creator: {
+                name: data.creator.name,
+              },
+              updatedAt: data.post.updatedAt,
+            };
+            console.log(post_socket);
+            setPosts((prevPosts) => {
+                if (prevPosts.length < 2) {
+                  if (prevPosts.length === 0) {
+                    return [post_socket];
+                  } else if (prevPosts[prevPosts.length - 1]._id !== post_socket._id) {
+                    return [...prevPosts, post_socket];
+                  }
+                }
+                return prevPosts;
+              });
+          }
+        });
+      
+        return () => {
+          socket.disconnect();
+        };
+        
     }, [getPostsAPI])
 
     //function of create post

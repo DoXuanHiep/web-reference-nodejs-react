@@ -72,7 +72,7 @@ exports.createPost = (req, res, next) => {
             return user.save()
         })
         .then(result => {
-            io.getIO().emit('posts', {action: 'create', post: post})
+            io.getIO().emit('posts', {action: 'create', post: post, creator: {_id: creator._id, name: creator.name}})
             res.status(201).json({
                 message: 'Posts created successfully',
                 post: result,

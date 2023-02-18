@@ -40,7 +40,8 @@ const CreatePost = (props) => {
 
         console.log(data)
 
-        window.location.reload(false);
+        // window.location.reload(false);
+        props.onCancel()
 
     }
 
