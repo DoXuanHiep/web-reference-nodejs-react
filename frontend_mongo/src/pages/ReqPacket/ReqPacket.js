@@ -12,7 +12,12 @@ function ReqPacket() {
     const url = config.api.url; // Replace with your API endpoint URL
     setIsLoading(true);
     const start = Date.now();
-    const response = await fetch(url);
+    const timestamp = new Date().getTime();
+    const response = await fetch(`${url}?timestamp=${timestamp}`, {
+      headers: {
+        "Cache-Control": "no-cache"
+      }
+    });
     const end = Date.now();
     const responseTime = end - start;
     setIsLoading(false);
@@ -28,11 +33,16 @@ function ReqPacket() {
   }, [isRunning, numRequests]);
 
   async function makeRequests() {
-    const url = "http://18.214.40.79:8080/"; // Replace with your API endpoint URL
+    const url = config.api.url; // Replace with your API endpoint URL
     setIsLoading(true);
     let times = [];
     for (let i = 0; i < numRequests; i++) {
-      fetch(url);
+      const timestamp = new Date().getTime();
+      fetch(`${url}?timestamp=${timestamp}`, {
+        headers: {
+          "Cache-Control": "no-cache"
+        }
+      })
     }
     setIsLoading(false);
     setNumRequests((numRequests) => numRequests * 2);
