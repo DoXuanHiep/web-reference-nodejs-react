@@ -2,7 +2,7 @@ version: '1.1'
 services:
   client:
     build:
-      context: ./frontend_mysql/docker
+      context: ./frontend_mysql
     ports:
       - "3000:3000"
     container_name: client
@@ -11,7 +11,7 @@ services:
 
   backend:
     build:
-      context: ./backend_mysql/docker
+      context: ./backend_mysql
     ports:
       - "8080:8080"
     restart: always
