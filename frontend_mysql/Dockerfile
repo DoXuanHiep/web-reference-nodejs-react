@@ -1,4 +1,4 @@
-FROM node:16 AS web-build
+FROM node AS web-build
 WORKDIR /usr/src/app
 COPY ./ ./client
 RUN cd client && npm install && npm run build --prod
@@ -7,7 +7,7 @@ RUN cd client && npm install && npm run build --prod
 FROM nginx:latest
 
 # Copy the build output to replace the default nginx contents.
-COPY --from=web-build /usr/src/app/client/dist/client/ /usr/share/nginx/html
+COPY --from=web-build /usr/src/app/client/build /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 3000
