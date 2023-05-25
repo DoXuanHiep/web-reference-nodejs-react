@@ -1,7 +1,7 @@
 import './App.css';
 import { Routes, Route, Navigate} from "react-router-dom";
 
-import Layout from './components/Layout/Layout';
+import Layout from './components/layout/Layout';
 import Login from './pages/Auth/Login';
 import Signup from './pages/Auth/Signup';
 import { useSelector } from 'react-redux';

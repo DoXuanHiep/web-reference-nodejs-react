@@ -56,9 +56,11 @@ exports.login = async (req, res, next) => {
 
         res.status(200).json({token: token, userId: user.id.toString()})
     } catch(err) {
+        console.log(1)
         if(!err.statusCode) {
             err.statusCode = 500;
         }
+        next(err)
     }
     // User.findOne({email: email})
     //     .then(user => {
