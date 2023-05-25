@@ -1,7 +1,7 @@
 import axios from "axios"
 import { authSliceAction } from "../store/auth-slice";
 
-const URL = 'http://localhost:8080'
+const URL = 'http://23.22.25.26:8080'
 
 //API of auth
 export const login =  async(user, dispatch) => {
