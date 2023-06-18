@@ -1,6 +1,7 @@
 import { Fragment, useCallback, useEffect, useState } from "react"
 import { getPosts, deletePost } from "../../lib/api";
 import io from "socket.io-client"
+import config from "../../config"
 
 import CreatePost from "../Post/CreatePost";
 import EditPost from "../Post/EditPost";
@@ -11,6 +12,8 @@ import { useSelector } from "react-redux";
 
 
 const FeedPage = () => {
+
+    const URL = config.api.url
 
     const token = useSelector((state) => state.auth?.token)
 
@@ -45,13 +48,13 @@ const FeedPage = () => {
 
     useEffect(() => {
         getPostsAPI()
-        const socket = io('http://localhost:8080', { transports : ['websocket'] })
+        const socket = io(`${URL}`, { transports : ['websocket'] })
         socket.on('posts', data => {
             if (data.action === 'create') {
                 console.log(data.post)
             }
         })
-    }, [getPostsAPI])
+    }, [getPostsAPI, URL])
 
     //function of create post
     const openCreatePostPageHandler = () => {
