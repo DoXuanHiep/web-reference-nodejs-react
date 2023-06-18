@@ -7,6 +7,7 @@ const cors = require('cors')    //import cors to fix error OPTIONS
 //library of service upload file
 const multer = require('multer')
 const { v4: uuidv4 } = require('uuid');
+require('dotenv').config()
 
 //import routers
 const feedRouters = require("./routes/feed");
@@ -71,7 +72,7 @@ app.use((error, req, res, next) => {
 })
 
 mongoose
-    .connect('mongodb+srv://hiepdx23:soejR0bRoV52tgMh@cluster0.irsm5nb.mongodb.net/message?retryWrites=true&w=majority')
+    .connect(process.env.MONGO)
     .then(result => {
         const server = app.listen(8080)
         const io = require('./socket').init(server)
